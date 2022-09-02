@@ -1,0 +1,126 @@
+.post{
+    display: flex;
+    flex:0.6;
+    margin: 0px 30px;
+    flex-direction: column;
+}
+
+.post__block{
+    background-color:#fff;
+    border-radius: 10px;
+}
+
+.post__block .post__input{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.post__input form{
+    display: flex;
+    align-items:center;
+    margin-bottom: 0px;
+    flex:1;
+}
+
+.post__input form input[type="text"]{
+    border-radius: 20px;
+    padding: 0px 10px;
+    margin-left: 10px;
+    height:40px;
+    outline:0;
+    border:1px solid #eee;
+    flex:1
+
+}
+
+.post__input form button[type="submit"]{
+    display:none;
+}
+
+.post__block .post__option{
+    display: flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px;
+
+}
+
+.post__option .option__div{
+    display: flex;
+    align-items:center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.post__option .option__div:hover{
+    background-color:#ccc;
+}
+
+.post__option .option__div svg{
+    margin-right: 5px;
+}
+
+.post__message{
+    background-color: #fff;
+    padding:10px;
+    margin-top: 10px;
+    border-radius:10px;
+}
+
+.post__message__header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.post__message__header__left{
+    display:flex;
+    align-items:center;
+}
+
+.post__profile_details h3{
+    font-size: 14px;
+    margin:0px;
+    margin-left: 10px;
+}
+
+.post__profile_details p{
+    font-size: 12px;
+    margin:0px;
+    margin-left: 10px;
+}
+.post__message__body{
+    padding:10px 0px;
+}
+.post__message__body p{
+    font-size: 14px;
+    margin:0px;
+
+}
+
+.post__message__footer{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0px;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    
+}
+
+.post__footer__option {
+    display:flex;
+    align-items:center;
+    cursor: pointer;
+}
+.post__footer__option svg {
+    margin-right: 5px;
+    color: #999
+}
+.post__footer__option span {
+    color: #999
+}
