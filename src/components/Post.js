@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Avatar} from '@mui/material';
 import Input_option from './Input_option'
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
@@ -7,16 +7,59 @@ import TodayIcon from '@mui/icons-material/Today';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import "../css/post.css"
 import Post_content from './Post_content'
+import {collection,addDoc,serverTimestamp,onSnapshot,query,orderBy} from 'firebase/firestore'
+import {db} from '../firebase'
+
+
 
 
 const Post = () => {
+const [input, setInput] = useState();
+const [dbposts, setPost] = useState([]);
+const postData = collection(db,'posts')
+const submitPost = (e)=>{
+    e.preventDefault();
+    
+    addDoc(postData,
+        {
+            name:"Ramji Subedi",
+            description:"Hello description",
+            message:input,
+            photoUrl:"https://yt3.ggpht.com/yti/AJo0G0kOL2hVIVd8MfblksM5D_lKhmQMElu_IV_xGKXF=s88-c-k-c0x00ffffff-no-rj-mo",
+            timestamp:serverTimestamp()
+        }).then(response => {
+            setInput('');
+            console.log('data added')
+        }).catch(error =>{
+            console.log('not added')
+        })
+    // db.collection('posts').add(
+    //    {
+    //     name:"Ramji Subedi",
+    //     description:"Hello description",
+    //     message:input,
+    //     photoUrl:"https://yt3.ggpht.com/yti/AJo0G0kOL2hVIVd8MfblksM5D_lKhmQMElu_IV_xGKXF=s88-c-k-c0x00ffffff-no-rj-mo",
+    //     timestamp:""
+    // }
+    // );
+
+}
+
+
+useEffect(() => {
+   const q = query(postData, orderBy("timestamp",'desc'));
+   const posts = onSnapshot(q, (snapshot) => setPost(snapshot.docs.map((doc) => ({
+    data:doc.data(), id:doc.id
+   }))))
+
+})
   return (
     <div className="post">
         <div className="post__block">
             <div className="post__input">
                 <Avatar />
-                <form>
-                    <input type="text" className="" placeholder="Whats in your ming?" />
+                <form onSubmit={submitPost}>
+                    <input onChange={e=>setInput(e.target.value)} value={input} type="text" className="" placeholder="Whats in your ming?" />
                     <button className="btn btn" type="submit">Post</button>
                 </form>
             </div>
@@ -27,14 +70,11 @@ const Post = () => {
                 <Input_option Icon={AssignmentIcon} tcolor="#fc9295" title="Write Article" />
             </div>
         </div>
-        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
-        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
-        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
-        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
-        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
-        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
-        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
-        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
+        {
+            dbposts.map(({id,data:{name,description,message,photoURL}})=>{
+                return <Post_content name={name} description={description} message={message} photoURL={photoURL} />
+            })
+        }
     </div>
   )
 }
