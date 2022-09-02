@@ -27,7 +27,14 @@ const Post = () => {
                 <Input_option Icon={AssignmentIcon} tcolor="#fc9295" title="Write Article" />
             </div>
         </div>
-        <Post_content />
+        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
+        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
+        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
+        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
+        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
+        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
+        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
+        <Post_content name="Ramji Subedi" description="We are learning react js" message="Hello this is body section." photoURL="" />
     </div>
   )
 }
