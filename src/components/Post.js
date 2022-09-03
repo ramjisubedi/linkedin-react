@@ -72,7 +72,7 @@ useEffect(() => {
         </div>
         {
             dbposts.map(({id,data:{name,description,message,photoURL}})=>{
-                return <Post_content name={name} description={description} message={message} photoURL={photoURL} />
+                return <Post_content key={id} name={name} description={description} message={message} photoURL={photoURL} />
             })
         }
     </div>
