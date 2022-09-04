@@ -9,6 +9,7 @@ import "../css/post.css"
 import Post_content from './Post_content'
 import {collection,addDoc,serverTimestamp,onSnapshot,query,orderBy} from 'firebase/firestore'
 import {db} from '../firebase'
+import FlipMove from 'react-flip-move'
 
 
 
@@ -70,11 +71,13 @@ useEffect(() => {
                 <Input_option Icon={AssignmentIcon} tcolor="#fc9295" title="Write Article" />
             </div>
         </div>
+        <FlipMove>
         {
             dbposts.map(({id,data:{name,description,message,photoURL}})=>{
                 return <Post_content key={id} name={name} description={description} message={message} photoURL={photoURL} />
             })
         }
+        </FlipMove>
     </div>
   )
 }
